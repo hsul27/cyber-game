@@ -40,6 +40,8 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
     private boolean mEnableTouchEvents;
 
+    public static final int REQUEST_CODE = 44;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -141,34 +143,38 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
                 // If this is the last question, ends the game.
                 // Else, display the next question.
                 if (--mNumberOfQuestions == 0) {
-                    // End the game
                     endGame();
                 } else {
                     mCurrentQuestion = mQuestionBank.getQuestion();
                     displayQuestion(mCurrentQuestion);
                 }
             }
-        }, 2000); // LENGTH_SHORT is usually 2 second long
+        }, 500); // LENGTH_SHORT is usually 2 second long
     }
 
-    private void endGame() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
-        builder.setTitle("Well done!")
-                .setMessage("Your score is " + mScore)
-                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        // End the activity
-                        Intent resultIntent = new Intent();
-                        resultIntent.putExtra(BUNDLE_EXTRA_SCORE, mScore);
-                        setResult(RESULT_OK, resultIntent);
-                        finish();
-                    }
-                })
-                .setCancelable(false)
-                .create()
-                .show();
+    private void endGame() {
+
+    Intent endingActivityIntent = new Intent(GameActivity.this, EndingActivity.class);
+    endingActivityIntent.putExtra("SCORE", mScore);
+    startActivityForResult(endingActivityIntent, REQUEST_CODE);
+//        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+//
+//        builder.setTitle("Well done!")
+//                .setMessage("Your score is " + mScore)
+//                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int which) {
+//                        // End the activity
+//                        Intent resultIntent = new Intent();
+//                        resultIntent.putExtra(BUNDLE_EXTRA_SCORE, mScore);
+//                        setResult(RESULT_OK, resultIntent);
+//                        finish();
+//                    }
+//                })
+//                .setCancelable(false)
+//                .create()
+//                .show();
     }
 
     @Override
@@ -180,34 +186,34 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     protected void onStart() {
         super.onStart();
 
-        System.out.println("MainActivity::onStart()");
+        System.out.println("GameActivity::onStart()");
     }
 
     @Override
     protected void onResume() {
         super.onResume();
 
-        System.out.println("MainActivity::onResume()");
+        System.out.println("GameActivity::onResume()");
     }
 
     @Override
     protected void onPause() {
         super.onPause();
 
-        System.out.println("MainActivity::onPause()");
+        System.out.println("GameActivity::onPause()");
     }
 
     @Override
     protected void onStop() {
         super.onStop();
 
-        System.out.println("MainActivity::onStop()");
+        System.out.println("GameActivity::onStop()");
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
 
-        System.out.println("MainActivity::onDestroy()");
+        System.out.println("GameActivity::onDestroy()");
     }
 }

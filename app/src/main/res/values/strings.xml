@@ -8,4 +8,6 @@
     <string name="answer3">answer3</string>
     <string name="answer4">answer4</string>
     <string name="let_s_play">Let\'s play</string>
+    <string name="you_have_finished_your_first_day_good_job">you have finished your first day,, good job</string>
+    <string name="back_to_main_screen">back to main screen</string>
 </resources>

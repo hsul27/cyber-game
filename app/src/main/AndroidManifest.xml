@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Practice">
         <activity
+            android:name=".controller.EndingActivity"
+            android:exported="false" />
+        <activity
             android:name=".controller.ExplanationActivity"
             android:exported="false" />
         <activity

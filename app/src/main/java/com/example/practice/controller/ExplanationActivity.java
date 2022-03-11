@@ -37,34 +37,34 @@ public class ExplanationActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-        System.out.println("MainActivity::onStart()");
+            System.out.println("ExplanationActivity::onStart()");
     }
 
     @Override
     protected void onResume() {
         super.onResume();
 
-        System.out.println("MainActivity::onResume()");
+        System.out.println("ExplanationActivity::onResume()");
     }
 
     @Override
     protected void onPause() {
         super.onPause();
 
-        System.out.println("MainActivity::onPause()");
+        System.out.println("ExplanationActivity::onPause()");
     }
 
     @Override
     protected void onStop() {
         super.onStop();
 
-        System.out.println("MainActivity::onStop()");
+        System.out.println("ExplanationActivity::onStop()");
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
 
-        System.out.println("MainActivity::onDestroy()");
+        System.out.println("ExplanationActivity::onDestroy()");
     }
 }
