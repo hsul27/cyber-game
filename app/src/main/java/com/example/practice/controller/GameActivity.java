@@ -37,6 +37,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     public static final String BUNDLE_EXTRA_SCORE = "BUNDLE_EXTRA_SCORE";
     public static final String BUNDLE_STATE_SCORE = "currentScore";
     public static final String BUNDLE_STATE_QUESTION = "currentQuestion";
+    public static final String CORRECTNESS = "correctness";
 
     private boolean mEnableTouchEvents;
 
@@ -123,15 +124,19 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         int responseIndex = (int) v.getTag();
-
+        boolean answerCorrect;
         if (responseIndex == mCurrentQuestion.getAnswerIndex()) {
             // Good answer
+            answerCorrect = true;
             Toast.makeText(this, "Correct", Toast.LENGTH_SHORT).show();
             mScore++;
         } else {
             // Wrong answer
+            answerCorrect = false;
             Toast.makeText(this, "Wrong answer!", Toast.LENGTH_SHORT).show();
         }
+
+        displayConsequence(answerCorrect);
 
         mEnableTouchEvents = false;
         if (--mNumberOfQuestions == 0) {
@@ -150,6 +155,14 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
             },200); // LENGTH_SHORT is usually 2 second long
         }
 
+    }
+
+    public void displayConsequence(boolean correct) {
+        //open consequence activity, read consequence, then return to activity
+
+        Intent i = new Intent(GameActivity.this, ConsequenceActivity.class);
+        i.putExtra(CORRECTNESS, correct);
+        startActivity(i);
     }
 
 
