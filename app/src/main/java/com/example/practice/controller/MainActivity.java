@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
                 mPreferences.edit().putString(PREF_KEY_FIRSTNAME, mUser.getFirstName()).apply();
 
                 Intent explanationActivityIntent = new Intent(MainActivity.this, ExplanationActivity.class);
-                startActivityForResult(explanationActivityIntent, REQUEST_CODE);
+                startActivity(explanationActivityIntent);
 
             }
         });

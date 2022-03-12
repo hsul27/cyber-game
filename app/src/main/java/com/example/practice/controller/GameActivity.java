@@ -134,30 +134,31 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         }
 
         mEnableTouchEvents = false;
+        if (--mNumberOfQuestions == 0) {
+            endGame();
+        }
+        else {
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    mEnableTouchEvents = true;
 
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                mEnableTouchEvents = true;
-
-                // If this is the last question, ends the game.
-                // Else, display the next question.
-                if (--mNumberOfQuestions == 0) {
-                    endGame();
-                } else {
                     mCurrentQuestion = mQuestionBank.getQuestion();
                     displayQuestion(mCurrentQuestion);
+
                 }
-            }
-        }, 500); // LENGTH_SHORT is usually 2 second long
+            },200); // LENGTH_SHORT is usually 2 second long
+        }
+
     }
 
 
-    private void endGame() {
+    public void endGame() {
 
     Intent endingActivityIntent = new Intent(GameActivity.this, EndingActivity.class);
-    endingActivityIntent.putExtra("SCORE", mScore);
-    startActivityForResult(endingActivityIntent, REQUEST_CODE);
+    endingActivityIntent.putExtra(BUNDLE_EXTRA_SCORE, mScore);
+    startActivity(endingActivityIntent);
+
 //        AlertDialog.Builder builder = new AlertDialog.Builder(this);
 //
 //        builder.setTitle("Well done!")

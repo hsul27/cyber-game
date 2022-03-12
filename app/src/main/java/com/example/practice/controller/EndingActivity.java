@@ -1,8 +1,11 @@
 package com.example.practice.controller;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -11,23 +14,34 @@ import com.example.practice.R;
 
 public class EndingActivity extends AppCompatActivity {
 
-    String mScore = getIntent().getStringExtra("SCORE");
     private TextView mEnding;
     private Button mBackToMain;
-    public static final int REQUEST_CODE = 44;
+    public static final int REQUEST_CODE = 42;
+    int mScore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ending);
 
-    mBackToMain = findViewById(R.id.backToMain);
-    mEnding = findViewById(R.id.ending);
-    String text = "your score was " + mScore;
-    mEnding.setText(text);
-    mBackToMain.setEnabled(true);
-    }
+        Intent i = getIntent();
+        mScore = i.getIntExtra(GameActivity.BUNDLE_EXTRA_SCORE, -1);
 
+        mBackToMain = findViewById(R.id.backToMain);
+        mEnding = findViewById(R.id.ending);
+        String text = "your score was " + mScore;
+        mEnding.setText(text);
+
+        mBackToMain.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent mainActivityIntent = new Intent(EndingActivity.this, MainActivity.class);
+                startActivity(mainActivityIntent);
+
+            }
+        });
+    }
 
     @Override
     protected void onStart() {
