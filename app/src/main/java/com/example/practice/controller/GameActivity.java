@@ -40,7 +40,6 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     public static final String CORRECTNESS = "correctness";
 
     private boolean mEnableTouchEvents;
-
     public static final int REQUEST_CODE = 44;
 
     @Override
@@ -124,19 +123,13 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         int responseIndex = (int) v.getTag();
-        boolean answerCorrect;
         if (responseIndex == mCurrentQuestion.getAnswerIndex()) {
             // Good answer
-            answerCorrect = true;
-            Toast.makeText(this, "Correct", Toast.LENGTH_SHORT).show();
-            mScore++;
+            displayConsequence(true);
         } else {
             // Wrong answer
-            answerCorrect = false;
-            Toast.makeText(this, "Wrong answer!", Toast.LENGTH_SHORT).show();
+            displayConsequence(false);
         }
-
-        displayConsequence(answerCorrect);
 
         mEnableTouchEvents = false;
         if (--mNumberOfQuestions == 0) {
@@ -159,9 +152,8 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
     public void displayConsequence(boolean correct) {
         //open consequence activity, read consequence, then return to activity
-
         Intent i = new Intent(GameActivity.this, ConsequenceActivity.class);
-        i.putExtra(CORRECTNESS, correct);
+        i.putExtra(CORRECTNESS, Boolean.valueOf(correct));
         startActivity(i);
     }
 

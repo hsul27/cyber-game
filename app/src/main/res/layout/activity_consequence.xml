@@ -18,8 +18,8 @@
 
     <TextView
         android:id="@+id/explanation"
-        android:layout_width="80dp"
-        android:layout_height="15dp"
+        android:layout_width="111dp"
+        android:layout_height="75dp"
         android:text="TextView"
         app:layout_constraintBottom_toTopOf="@+id/backToGame"
         app:layout_constraintEnd_toEndOf="parent"

@@ -24,8 +24,7 @@ public class ConsequenceActivity extends AppCompatActivity {
 
         mBackToGame = findViewById(R.id.backToGame);
 
-        Intent i = getIntent();
-        mCorrectness = i.getBooleanExtra(GameActivity.CORRECTNESS,false);
+        mCorrectness = getIntent().getBooleanExtra(GameActivity.CORRECTNESS, true);
         if (mCorrectness == true) {
             result = "your answer was correct";
         } else if (mCorrectness == false) {
