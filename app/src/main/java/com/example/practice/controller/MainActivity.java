@@ -69,6 +69,9 @@ public class MainActivity extends AppCompatActivity {
 
                 Intent explanationActivityIntent = new Intent(MainActivity.this, ExplanationActivity.class);
                 startActivity(explanationActivityIntent);
+                //finish
+                Intent gameActivityIntent = new Intent(MainActivity.this, GameActivity.class);
+                startActivityForResult(gameActivityIntent, REQUEST_CODE);
 
             }
         });

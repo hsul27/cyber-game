@@ -35,9 +35,9 @@ public class EndingActivity extends AppCompatActivity {
         mBackToMain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                Intent mainActivityIntent = new Intent(EndingActivity.this, MainActivity.class);
-                startActivity(mainActivityIntent);
+                finish();
+               // Intent mainActivityIntent = new Intent(EndingActivity.this, MainActivity.class);
+             //   startActivity(mainActivityIntent);
 
             }
         });

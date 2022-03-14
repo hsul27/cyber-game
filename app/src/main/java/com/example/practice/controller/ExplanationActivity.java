@@ -24,10 +24,7 @@ public class ExplanationActivity extends AppCompatActivity {
         mLetsPlayButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                Intent gameActivityIntent = new Intent(ExplanationActivity.this, GameActivity.class);
-                startActivityForResult(gameActivityIntent, REQUEST_CODE);
-
+                finish();
             }
         });
     }

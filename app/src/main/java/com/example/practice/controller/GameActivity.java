@@ -126,9 +126,10 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         if (responseIndex == mCurrentQuestion.getAnswerIndex()) {
             // Good answer
             displayConsequence(true);
+            mScore++;
         } else {
             // Wrong answer
-            displayConsequence(false);
+           displayConsequence(false);
         }
 
         mEnableTouchEvents = false;
@@ -147,14 +148,13 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
                 }
             },200); // LENGTH_SHORT is usually 2 second long
         }
-
     }
 
     public void displayConsequence(boolean correct) {
         //open consequence activity, read consequence, then return to activity
-        Intent i = new Intent(GameActivity.this, ConsequenceActivity.class);
-        i.putExtra(CORRECTNESS, Boolean.valueOf(correct));
-        startActivity(i);
+        Intent consequence = new Intent(GameActivity.this, ConsequenceActivity.class);
+        consequence.putExtra(CORRECTNESS, Boolean.valueOf(correct));
+        startActivity(consequence);
     }
 
 
@@ -163,6 +163,11 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     Intent endingActivityIntent = new Intent(GameActivity.this, EndingActivity.class);
     endingActivityIntent.putExtra(BUNDLE_EXTRA_SCORE, mScore);
     startActivity(endingActivityIntent);
+    //finish
+    Intent resultIntent = new Intent();
+    resultIntent.putExtra(BUNDLE_EXTRA_SCORE, mScore);
+    setResult(RESULT_OK, resultIntent);
+    finish();
 
 //        AlertDialog.Builder builder = new AlertDialog.Builder(this);
 //
