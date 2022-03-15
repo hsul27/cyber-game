@@ -133,10 +133,8 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         }
 
         mEnableTouchEvents = false;
-        if (--mNumberOfQuestions == 0) {
-            endGame();
-        }
-        else {
+
+
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
@@ -146,7 +144,10 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
                     displayQuestion(mCurrentQuestion);
 
                 }
-            },200); // LENGTH_SHORT is usually 2 second long
+            }, 200); // LENGTH_SHORT is usually 2 second long
+
+        if (--mNumberOfQuestions == 0) {
+            endGame();
         }
     }
 

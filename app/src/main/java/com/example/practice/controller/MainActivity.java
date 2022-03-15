@@ -83,7 +83,10 @@ public class MainActivity extends AppCompatActivity {
         if (REQUEST_CODE == requestCode && RESULT_OK == resultCode) {
             //fetch score from intent
             int score = data.getIntExtra(GameActivity.BUNDLE_EXTRA_SCORE, 0);
-            mPreferences.edit().putInt(PREF_KEY_SCORE, score).apply();
+            if(score > mPreferences.getInt((PREF_KEY_SCORE), 0))
+            {
+                mPreferences.edit().putInt(PREF_KEY_SCORE, score).apply();
+            }
             helloUser();
         }
     }
@@ -94,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
             int score = mPreferences.getInt(PREF_KEY_SCORE, 0);
 
             String text = "welcome back " + firstName
-                    + "\nyour last score was " + score
+                    + "\nyour highest score is " + score
                     + ", try improve!!";
             mWelcomeTextView.setText(text);
             mNameInput.setText(firstName);
