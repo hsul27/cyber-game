@@ -38,6 +38,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     public static final String BUNDLE_STATE_SCORE = "currentScore";
     public static final String BUNDLE_STATE_QUESTION = "currentQuestion";
     public static final String CORRECTNESS = "correctness";
+    public static final String EXPLANATION = "explanation";
 
     private boolean mEnableTouchEvents;
     public static final int REQUEST_CODE = 44;
@@ -97,25 +98,25 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private QuestionBank generateQuestions() {
-        Question question1 = new Question("What is Spiderman's real name?", Arrays.asList("Tony Stark", "Peter Parker", "Happy Hogan", "Ned Leeds"), 1);
+        Question question1 = new Question("What is Spiderman's real name?", Arrays.asList("Tony Stark", "Peter Parker", "Happy Hogan", "Ned Leeds"), 1, "THIS IS THE CORRECT EXPLANATION", "THIS IS THE INCORRECT EXPLANATION");
 
-        Question question2 = new Question("I love you...", Arrays.asList("1,000,000", "to infinity and beyond", "3,000", "lots"), 2);
+        Question question2 = new Question("I love you...", Arrays.asList("1,000,000", "to infinity and beyond", "3,000", "lots"), 2, "THIS IS THE CORRECT EXPLANATION", "THIS IS THE INCORRECT EXPLANATION");
 
-        Question question3 = new Question("What did Black Widow die to get?", Arrays.asList("Time stone", "Soul stone", "Mind stone", "Space stone"), 1);
+        Question question3 = new Question("What did Black Widow die to get?", Arrays.asList("Time stone", "Soul stone", "Mind stone", "Space stone"), 1, "THIS IS THE CORRECT EXPLANATION", "THIS IS THE INCORRECT EXPLANATION");
 
-        Question question4 = new Question("Who appeared in No Way Home?", Arrays.asList("Deadpool", "Hawkeye", "Scarlet Witch", "Daredevil"), 3);
+        Question question4 = new Question("Who appeared in No Way Home?", Arrays.asList("Deadpool", "Hawkeye", "Scarlet Witch", "Daredevil"), 3, "THIS IS THE CORRECT EXPLANATION", "THIS IS THE INCORRECT EXPLANATION");
 
-        Question question5 = new Question("What was Steven Strange's career before he became magical?", Arrays.asList("Surgeon", "Artist", "Nurse", "Engineer"), 0);
+        Question question5 = new Question("What was Steven Strange's career before he became magical?", Arrays.asList("Surgeon", "Artist", "Nurse", "Engineer"), 0, "THIS IS THE CORRECT EXPLANATION", "THIS IS THE INCORRECT EXPLANATION");
 
-        Question question6 = new Question("What type of radiation caused Bruce Banner to become the Hulk?", Arrays.asList("Infrared", "Gamma", "Ultraviolet", "Microwave"), 1);
+        Question question6 = new Question("What type of radiation caused Bruce Banner to become the Hulk?", Arrays.asList("Infrared", "Gamma", "Ultraviolet", "Microwave"), 1, "THIS IS THE CORRECT EXPLANATION", "THIS IS THE INCORRECT EXPLANATION");
 
-        Question question7 = new Question("On what planet is the soul stone found?", Arrays.asList("Titan", "Morag", "Xandar", "Vormir"), 3);
+        Question question7 = new Question("On what planet is the soul stone found?", Arrays.asList("Titan", "Morag", "Xandar", "Vormir"), 3, "THIS IS THE CORRECT EXPLANATION", "THIS IS THE INCORRECT EXPLANATION");
 
-        Question question8 = new Question("Who is the rock dude from Thor Ragnarok?", Arrays.asList("Smaug", "Groot", "Korg", "Drax"), 2);
+        Question question8 = new Question("Who is the rock dude from Thor Ragnarok?", Arrays.asList("Smaug", "Groot", "Korg", "Drax"), 2, "THIS IS THE CORRECT EXPLANATION", "THIS IS THE INCORRECT EXPLANATION");
 
-        Question question9 = new Question("Who did not disappear during the blip?", Arrays.asList("Captain America", "Black Panther", "Spiderman", "Antman"), 0);
+        Question question9 = new Question("Who did not disappear during the blip?", Arrays.asList("Captain America", "Black Panther", "Spiderman", "Antman"), 0, "THIS IS THE CORRECT EXPLANATION", "THIS IS THE INCORRECT EXPLANATION");
 
-        Question question10 = new Question("Who isn't a Spiderman villain?", Arrays.asList("Electro", "Winter Soldier", "Sandman", "Mysterio"), 1);
+        Question question10 = new Question("Who isn't a Spiderman villain?", Arrays.asList("Electro", "Winter Soldier", "Sandman", "Mysterio"), 1, "THIS IS THE CORRECT EXPLANATION", "THIS IS THE INCORRECT EXPLANATION");
 
         return new QuestionBank(Arrays.asList(question1, question2, question3, question4, question5, question6, question7, question8, question9, question10));
     }
@@ -125,16 +126,19 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         int responseIndex = (int) v.getTag();
         if (responseIndex == mCurrentQuestion.getAnswerIndex()) {
             // Good answer
-            displayConsequence(true);
+            displayConsequence(true, mCurrentQuestion.getCorrectConsequence());
             mScore++;
         } else {
             // Wrong answer
-           displayConsequence(false);
+           displayConsequence(false, mCurrentQuestion.getIncorrectConsequence());
         }
 
         mEnableTouchEvents = false;
 
-
+        if (--mNumberOfQuestions == 0) {
+            endGame();
+        }
+        else {
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
@@ -145,16 +149,14 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
                 }
             }, 200); // LENGTH_SHORT is usually 2 second long
-
-        if (--mNumberOfQuestions == 0) {
-            endGame();
         }
     }
 
-    public void displayConsequence(boolean correct) {
+    public void displayConsequence(boolean correct, String explain) {
         //open consequence activity, read consequence, then return to activity
         Intent consequence = new Intent(GameActivity.this, ConsequenceActivity.class);
         consequence.putExtra(CORRECTNESS, Boolean.valueOf(correct));
+        consequence.putExtra(EXPLANATION, explain);
         startActivity(consequence);
     }
 

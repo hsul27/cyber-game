@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(explanationActivityIntent);
                 //finish
                 Intent gameActivityIntent = new Intent(MainActivity.this, GameActivity.class);
-                startActivityForResult(gameActivityIntent, REQUEST_CODE);
+                startActivity(gameActivityIntent);
 
             }
         });

@@ -14,8 +14,9 @@ public class ConsequenceActivity extends AppCompatActivity {
 
     private Button mBackToGame;
     private boolean mCorrectness;
-    private TextView mExplanation;
+    private TextView mConsequence;
     private String result;
+    private String mExplanation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,14 +26,16 @@ public class ConsequenceActivity extends AppCompatActivity {
         mBackToGame = findViewById(R.id.backToGame);
 
         mCorrectness = getIntent().getBooleanExtra(GameActivity.CORRECTNESS, true);
+
+        mExplanation = getIntent().getStringExtra(GameActivity.EXPLANATION);
         if (mCorrectness == true) {
-            result = "your answer was correct";
+            result = "your answer was correct \n" + mExplanation;
         } else if (mCorrectness == false) {
-            result = "your answer was wrong";
+            result = "your answer was wrong \n" + mExplanation;
         }
 
-        mExplanation = findViewById(R.id.explanation);
-        mExplanation.setText(result);
+        mConsequence = findViewById(R.id.consequence);
+        mConsequence.setText(result);
 
 
         mBackToGame.setOnClickListener(new View.OnClickListener() {

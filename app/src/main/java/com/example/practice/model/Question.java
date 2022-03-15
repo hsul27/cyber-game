@@ -7,11 +7,15 @@ public class Question {
     private String mQuestion;
     private List<String> mChoiceList;
     private int mAnswerIndex;
+    private String mCorrectConsequence;
+    private String mIncorrectConsequence;
 
-    public Question(String question, List<String> choiceList, int answerIndex) {
+    public Question(String question, List<String> choiceList, int answerIndex, String correctConsequence, String incorrectConsequence) {
         this.setQuestion(question);
         this.setChoiceList(choiceList);
         this.setAnswerIndex(answerIndex);
+        this.setCorrectConsequence(correctConsequence);
+        this.setIncorrectConsequence(incorrectConsequence);
     }
 
     public String getQuestion() {
@@ -41,12 +45,30 @@ public class Question {
         mAnswerIndex = answerIndex;
     }
 
+    public String getCorrectConsequence() {
+        return mCorrectConsequence;
+    }
+
+    public void setCorrectConsequence(String correctConsequence) {
+        mCorrectConsequence = correctConsequence;
+    }
+
+    public String getIncorrectConsequence() {
+        return mIncorrectConsequence;
+    }
+
+    public void setIncorrectConsequence(String incorrectConsequence) {
+        mIncorrectConsequence = incorrectConsequence;
+    }
+
     @Override
     public String toString() {
         return "Question{" +
                 "mQuestion='" + mQuestion + '\'' +
                 ", mChoiceList=" + mChoiceList +
                 ", mAnswerIndex=" + mAnswerIndex +
+                ", mCorrectConsequence='" + mCorrectConsequence + '\'' +
+                ", mIncorrectConsequence='" + mIncorrectConsequence + '\'' +
                 '}';
     }
 }
