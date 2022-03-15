@@ -13,7 +13,7 @@ public class ExplanationActivity extends AppCompatActivity {
 
 
     private Button mLetsPlayButton;
-    public static final int REQUEST_CODE = 43;
+    public static final int EXPLANATION_RETURN_CODE= MainActivity.EXPLANATION_RETURN_CODE;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +24,8 @@ public class ExplanationActivity extends AppCompatActivity {
         mLetsPlayButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent r = new Intent();
+                setResult(EXPLANATION_RETURN_CODE, r);
                 finish();
             }
         });

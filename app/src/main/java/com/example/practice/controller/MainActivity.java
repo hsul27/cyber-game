@@ -19,7 +19,8 @@ import com.example.practice.model.User;
 
 public class MainActivity extends AppCompatActivity {
 
-    public static final int REQUEST_CODE = 42;
+    public static final int GAME_RETURN_CODE = 3;
+    public static final int EXPLANATION_RETURN_CODE = 2;
     private TextView mWelcomeTextView;
     private EditText mNameInput;
     private Button mPlayButton;
@@ -68,10 +69,9 @@ public class MainActivity extends AppCompatActivity {
                 mPreferences.edit().putString(PREF_KEY_FIRSTNAME, mUser.getFirstName()).apply();
 
                 Intent explanationActivityIntent = new Intent(MainActivity.this, ExplanationActivity.class);
-                startActivity(explanationActivityIntent);
-                //finish
-                Intent gameActivityIntent = new Intent(MainActivity.this, GameActivity.class);
-                startActivity(gameActivityIntent);
+                startActivityForResult(explanationActivityIntent, EXPLANATION_RETURN_CODE);
+
+
 
             }
         });
@@ -80,14 +80,17 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (REQUEST_CODE == requestCode && RESULT_OK == resultCode) {
-            //fetch score from intent
-            int score = data.getIntExtra(GameActivity.BUNDLE_EXTRA_SCORE, 0);
-            if(score > mPreferences.getInt((PREF_KEY_SCORE), 0))
-            {
-                mPreferences.edit().putInt(PREF_KEY_SCORE, score).apply();
-            }
-            helloUser();
+        switch (requestCode) {
+            case EXPLANATION_RETURN_CODE:
+                Intent gameActivityIntent = new Intent(MainActivity.this, GameActivity.class);
+                startActivityForResult(gameActivityIntent, GAME_RETURN_CODE);
+            case GAME_RETURN_CODE:
+                int score = data.getIntExtra(GameActivity.BUNDLE_EXTRA_SCORE, 0);
+                if(score > mPreferences.getInt((PREF_KEY_SCORE), 0))
+                {
+                    mPreferences.edit().putInt(PREF_KEY_SCORE, score).apply();
+                }
+                helloUser();
         }
     }
 

@@ -41,7 +41,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     public static final String EXPLANATION = "explanation";
 
     private boolean mEnableTouchEvents;
-    public static final int REQUEST_CODE = 44;
+    public static final int GAME_RETURN_CODE = MainActivity.GAME_RETURN_CODE;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -123,15 +123,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        int responseIndex = (int) v.getTag();
-        if (responseIndex == mCurrentQuestion.getAnswerIndex()) {
-            // Good answer
-            displayConsequence(true, mCurrentQuestion.getCorrectConsequence());
-            mScore++;
-        } else {
-            // Wrong answer
-           displayConsequence(false, mCurrentQuestion.getIncorrectConsequence());
-        }
+
 
         mEnableTouchEvents = false;
 
@@ -146,9 +138,18 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
                     mCurrentQuestion = mQuestionBank.getQuestion();
                     displayQuestion(mCurrentQuestion);
-
                 }
             }, 200); // LENGTH_SHORT is usually 2 second long
+        }
+
+        int responseIndex = (int) v.getTag();
+        if (responseIndex == mCurrentQuestion.getAnswerIndex()) {
+            // Good answer
+            displayConsequence(true, mCurrentQuestion.getCorrectConsequence());
+            mScore++;
+        } else {
+            // Wrong answer
+            displayConsequence(false, mCurrentQuestion.getIncorrectConsequence());
         }
     }
 
@@ -163,14 +164,15 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
     public void endGame() {
 
+        Intent r = new Intent();
+        r.putExtra(BUNDLE_EXTRA_SCORE, mScore);
+        setResult(GAME_RETURN_CODE, r);
+        finish();
+
     Intent endingActivityIntent = new Intent(GameActivity.this, EndingActivity.class);
     endingActivityIntent.putExtra(BUNDLE_EXTRA_SCORE, mScore);
     startActivity(endingActivityIntent);
     //finish
-    Intent resultIntent = new Intent();
-    resultIntent.putExtra(BUNDLE_EXTRA_SCORE, mScore);
-    setResult(RESULT_OK, resultIntent);
-    finish();
 
 //        AlertDialog.Builder builder = new AlertDialog.Builder(this);
 //
