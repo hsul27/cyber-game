@@ -4,68 +4,92 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
+    android:background="#fdc500"
     tools:context=".controller.MainActivity">
 
     <TextView
         android:id="@+id/welcometext"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="647dp"
+        android:layout_height="245dp"
         android:layout_margin="10dp"
+        android:background="@drawable/background"
+        android:gravity="center_horizontal"
         android:padding="20dp"
         android:text="@string/welcome"
-        android:textSize="24sp"
+        android:textColor="#BE000000"
+        android:textSize="48sp"
+        android:textStyle="bold"
+        android:typeface="monospace"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintHorizontal_bias="0.454"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.158" />
+        app:layout_constraintVertical_bias="0.09" />
 
     <EditText
         android:id="@+id/nameinput"
-        android:layout_width="267dp"
-        android:layout_height="56dp"
+        android:layout_width="501dp"
+        android:layout_height="135dp"
+        android:gravity="center_horizontal"
         android:inputType="text"
+        android:textSize="34sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.277" />
+        app:layout_constraintVertical_bias="0.336" />
 
     <Button
         android:id="@+id/playbutton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="272dp"
+        android:layout_height="105dp"
+        android:fontFamily="sans-serif-black"
         android:text="@string/buttonPlay"
+        android:textColor="#fdc500"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        android:typeface="monospace"
+        app:backgroundTint="#be000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nameinput"
-        app:layout_constraintVertical_bias="0.029" />
+        app:layout_constraintVertical_bias="0.05" />
 
     <TextView
         android:id="@+id/currentscores"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="37dp"
-        android:text="Current scores..."
-        android:textSize="20sp"
+        android:layout_width="635dp"
+        android:layout_height="96dp"
+        android:layout_marginTop="60dp"
+        android:gravity="center_horizontal"
+        android:text="@string/current_scores"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textColor="#BE000000"
+        android:textSize="60sp"
+        android:textStyle="bold"
+        android:typeface="sans"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/playbutton" />
 
     <TextView
         android:id="@+id/showscores"
-        android:layout_width="208dp"
-        android:layout_height="304dp"
-        android:text="..."
-        android:textSize="24sp"
+        android:layout_width="648dp"
+        android:layout_height="414dp"
+        android:background="@drawable/background"
+        android:gravity="center_horizontal"
+        android:text=""
+        android:textColor="#BE000000"
+        android:textSize="34sp"
+        android:typeface="monospace"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/currentscores"
-        app:layout_constraintVertical_bias="0.358" />
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
