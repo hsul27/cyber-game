@@ -1,4 +1,4 @@
-package com.example.practice.controller;
+package com.example.cybergame.controller;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -8,17 +8,13 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TableLayout;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.practice.R;
-import com.example.practice.model.User;
-
-import java.util.Iterator;
-import java.util.Map;
+import com.example.cybergame.R;
+import com.example.cybergame.model.User;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -125,24 +121,10 @@ public class MainActivity extends AppCompatActivity {
 
     private void displayScores() {
         String allDetails = mPreferences.getAll().toString();
-//        System.out.println(mPreferences);
-//        String toPrint = "";
-//        Iterator<String> itr = allDetails.keySet().iterator();
-//        while (itr.hasNext()) {
-//            System.out.println(itr.next());
-//           // String name = mPreferences.getString(itr.next(), "");
-//           // int score = mPreferences.getInt(itr.next(), -1);
-//            toPrint = toPrint + itr.next() + "    " + '\n';
-//       }
-
         String withoutb = allDetails.replaceAll("[{}]", "");
         String withoutc = withoutb.replace(',','\n');
         String withoute = withoutc.replaceAll("[=]", ": ");
-
         mShowScores.setText(withoute);
-       // remove brackets
-        //split alldetails by comma
-       // split into name and value by =
     }
 
     @Override

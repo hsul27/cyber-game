@@ -1,4 +1,4 @@
-package com.example.practice.controller;
+package com.example.cybergame.controller;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.example.practice.R;
+import com.example.cybergame.R;
 
 public class ExplanationActivity extends AppCompatActivity {
 

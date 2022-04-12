@@ -1,4 +1,4 @@
-package com.example.practice;
+package com.example.cybergame;
 
 import org.junit.Test;
 

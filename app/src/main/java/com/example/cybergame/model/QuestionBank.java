@@ -1,7 +1,6 @@
-package com.example.practice.model;
+package com.example.cybergame.model;
 
 import java.util.List;
-import java.util.Collections;
 
 public class QuestionBank {
 

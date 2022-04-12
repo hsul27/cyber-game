@@ -1,41 +1,45 @@
-package com.example.practice.controller;
+package com.example.cybergame.controller;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 
-import com.example.practice.R;
+import com.example.cybergame.R;
 
-public class EndingActivity extends AppCompatActivity {
+public class ConsequenceActivity extends AppCompatActivity {
 
-    private TextView mEnding;
-    private Button mBackToMain;
-    public static final int REQUEST_CODE = 42;
-    int mScore;
+    private Button mBackToGame;
+    private boolean mCorrectness;
+    private TextView mConsequence;
+    private String result;
+    private String mExplanation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_ending);
+        setContentView(R.layout.activity_consequence);
 
-        Intent i = getIntent();
-        mScore = i.getIntExtra(GameActivity.BUNDLE_EXTRA_SCORE, -1);
+        mBackToGame = findViewById(R.id.backToGame);
 
-        mBackToMain = findViewById(R.id.backToMain);
-        mEnding = findViewById(R.id.ending);
-        String text = "your score was " + mScore;
-        mEnding.setText(text);
+        mCorrectness = getIntent().getBooleanExtra(GameActivity.CORRECTNESS, true);
 
-        mBackToMain.setOnClickListener(new View.OnClickListener() {
+        mExplanation = getIntent().getStringExtra(GameActivity.EXPLANATION);
+        if (mCorrectness == true) {
+            result = "your answer was correct \n" + mExplanation;
+        } else if (mCorrectness == false) {
+            result = "your answer was wrong \n" + mExplanation;
+        }
+
+        mConsequence = findViewById(R.id.consequence);
+        mConsequence.setText(result);
+
+
+        mBackToGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //set result??
                 finish();
             }
         });

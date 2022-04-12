@@ -1,4 +1,4 @@
-package com.example.practice.model;
+package com.example.cybergame.model;
 
 public class User {
 

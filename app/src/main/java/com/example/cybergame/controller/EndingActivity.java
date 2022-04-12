@@ -1,4 +1,4 @@
-package com.example.practice.controller;
+package com.example.cybergame.controller;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,39 +8,32 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.practice.R;
+import com.example.cybergame.R;
 
-public class ConsequenceActivity extends AppCompatActivity {
+public class EndingActivity extends AppCompatActivity {
 
-    private Button mBackToGame;
-    private boolean mCorrectness;
-    private TextView mConsequence;
-    private String result;
-    private String mExplanation;
+    private TextView mEnding;
+    private Button mBackToMain;
+    public static final int REQUEST_CODE = 42;
+    int mScore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_consequence);
+        setContentView(R.layout.activity_ending);
 
-        mBackToGame = findViewById(R.id.backToGame);
+        Intent i = getIntent();
+        mScore = i.getIntExtra(GameActivity.BUNDLE_EXTRA_SCORE, -1);
 
-        mCorrectness = getIntent().getBooleanExtra(GameActivity.CORRECTNESS, true);
+        mBackToMain = findViewById(R.id.backToMain);
+        mEnding = findViewById(R.id.ending);
+        String text = "your score was " + mScore;
+        mEnding.setText(text);
 
-        mExplanation = getIntent().getStringExtra(GameActivity.EXPLANATION);
-        if (mCorrectness == true) {
-            result = "your answer was correct \n" + mExplanation;
-        } else if (mCorrectness == false) {
-            result = "your answer was wrong \n" + mExplanation;
-        }
-
-        mConsequence = findViewById(R.id.consequence);
-        mConsequence.setText(result);
-
-
-        mBackToGame.setOnClickListener(new View.OnClickListener() {
+        mBackToMain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //set result??
                 finish();
             }
         });

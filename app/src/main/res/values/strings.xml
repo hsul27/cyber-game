@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Practice</string>
+    <string name="app_name">CyberGame</string>
     <string name="welcome">welcome to the cybersec game, what is yo name</string>
     <string name="buttonPlay">let\'s play</string>
     <string name="question">question?</string>
