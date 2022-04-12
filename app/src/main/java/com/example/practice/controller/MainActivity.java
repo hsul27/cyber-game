@@ -47,7 +47,6 @@ public class MainActivity extends AppCompatActivity {
 
         mPreferences = getPreferences(MODE_PRIVATE); //not accessible outside of application
         User mUser = new User();
-
        // helloUser();
 
         displayScores();
@@ -125,14 +124,25 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void displayScores() {
-        Map allDetails = mPreferences.getAll();
-        System.out.println(mPreferences.getAll());
-        String toPrint = "";
-        Iterator<Integer> itr = allDetails.keySet().iterator();
-        while (itr.hasNext()) {
-            toPrint = toPrint + itr.next() + '\n';
-        }
-        mShowScores.setText(toPrint);
+        String allDetails = mPreferences.getAll().toString();
+//        System.out.println(mPreferences);
+//        String toPrint = "";
+//        Iterator<String> itr = allDetails.keySet().iterator();
+//        while (itr.hasNext()) {
+//            System.out.println(itr.next());
+//           // String name = mPreferences.getString(itr.next(), "");
+//           // int score = mPreferences.getInt(itr.next(), -1);
+//            toPrint = toPrint + itr.next() + "    " + '\n';
+//       }
+
+        String withoutb = allDetails.replaceAll("[{}]", "");
+        String withoutc = withoutb.replace(',','\n');
+        String withoute = withoutc.replaceAll("[=]", ": ");
+
+        mShowScores.setText(withoute);
+       // remove brackets
+        //split alldetails by comma
+       // split into name and value by =
     }
 
     @Override
