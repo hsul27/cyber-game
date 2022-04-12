@@ -28,8 +28,8 @@
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="786dp"
-        android:layout_height="918dp"
+        android:layout_width="799dp"
+        android:layout_height="801dp"
         android:background="@drawable/background"
         android:text="this is the explanation for the game, you are a working at ..............."
         android:textColor="#000000"

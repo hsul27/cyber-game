@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">CyberGame</string>
-    <string name="welcome">Welcome to ..., what\'s your name?</string>
+    <string name="welcome">Welcome to MediCo, what\'s your name?</string>
     <string name="buttonPlay">Let\'s play</string>
     <string name="question">question?</string>
     <string name="answer1">answer1</string>
@@ -11,4 +11,6 @@
     <string name="you_have_finished_your_first_day_good_job">you have finished your first day,, good job</string>
     <string name="back_to_main_screen">back to main screen</string>
     <string name="current_scores">CURRENT SCORES</string>
+
+    <string name="question1">your boss wants </string>
 </resources>

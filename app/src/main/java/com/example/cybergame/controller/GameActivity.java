@@ -54,7 +54,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
             mNumberOfQuestions = savedInstanceState.getInt(BUNDLE_STATE_QUESTION);
         } else {
             mScore = 0;
-            mNumberOfQuestions = 5;
+            mNumberOfQuestions = 8;
         }
 
         mEnableTouchEvents = true;
@@ -95,27 +95,23 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private QuestionBank generateQuestions() {
-        Question question1 = new Question("A computer network security system that restricts internet traffic in, out, or within a private network", Arrays.asList("Protocol", "Firewall", "Encryption", "Cookies"), 1, "well done, firewall is correct - make sure you have installed a firewall etcetc", "the answer is firewall, this is why...");
+        Question question1 = new Question("@string/question1", Arrays.asList("Protocol", "Firewall", "Encryption", "Cookies"), 1, "well done, firewall is correct - make sure you have installed a firewall etcetc", "the answer is firewall, this is why...");
 
-        Question question2 = new Question("Which one of the following refers to the technique used for verifying the integrity of the message?", Arrays.asList("Protocol", "Decryption algorithm", "Message digest", "Digital signature"), 2, "well done - look into message digesting and adding digital signature", "the answer is message digest - this is etc...");
+        Question question2 = new Question("@string/question2", Arrays.asList("Protocol", "Decryption algorithm", "Message digest", "Digital signature"), 2, "well done - look into message digesting and adding digital signature", "the answer is message digest - this is etc...");
 
-        Question question3 = new Question("In Wi-Fi Security, which of the following protocol is most commonly used?", Arrays.asList("WPS", "WPA2", "WEP", "WPA"), 1, "well done - wpa3 is on its way now", "wrong - wpa2 is most commonly used as...");
+        Question question3 = new Question("@string/question3", Arrays.asList("WPS", "WPA2", "WEP", "WPA"), 1, "well done - wpa3 is on its way now", "wrong - wpa2 is most commonly used as...");
 
-        Question question4 = new Question("Encryption techniques are primarily used for improving...", Arrays.asList("Longevity", "Reliability", "Performance", "Security"), 3, "well done - encryption is a basic measure to ensure...", "answer is encryption - method of securing data ...");
+        Question question4 = new Question("@string/question4", Arrays.asList("Longevity", "Reliability", "Performance", "Security"), 3, "well done - encryption is a basic measure to ensure...", "answer is encryption - method of securing data ...");
 
-        Question question5 = new Question("Which of the following is considered as the world's first antivirus program?", Arrays.asList("Creeper", "Reaper", "Tinkered", "Ray Tomlinson"), 1, "well done - reaper was developed in ...", "answer is reaper - it was developed in ... by...");
+        Question question5 = new Question("@string/question5", Arrays.asList("Creeper", "Reaper", "Tinkered", "Ray Tomlinson"), 1, "well done - reaper was developed in ...", "answer is reaper - it was developed in ... by...");
 
-        Question question6 = new Question("Which type of the following malware does not replicate or clone themselves through infection?", Arrays.asList("Rootkits", "Worms", "Viruses", "Trojans"), 3, "well done - EXPLAIN HERE EXPLAIN HERE", "the answer is trojans - all the others can replicate themselves by...");
+        Question question6 = new Question("@string/question6", Arrays.asList("Rootkits", "Worms", "Viruses", "Trojans"), 3, "well done - EXPLAIN HERE EXPLAIN HERE", "the answer is trojans - all the others can replicate themselves by...");
 
-        Question question7 = new Question("Which of the following malware types allows the attacker to access the administrative controls and enables them to do almost anything they want with the infected computers?", Arrays.asList("RATs", "Worms", "Rootkits", "Botnets"), 0, "well done - remote access trojans", "incorrect - remote access trojans are... ");
+        Question question7 = new Question("@string/question7", Arrays.asList("RATs", "Worms", "Rootkits", "Botnets"), 0, "well done - remote access trojans", "incorrect - remote access trojans are... ");
 
-        Question question8 = new Question("DNS translates a domain name into...", Arrays.asList("Hex", "Binary", "IP", "URL"), 3, "well done - its converted by ...", "incorrect - it's URL - this is done by...");
+        Question question8 = new Question("@string/question8", Arrays.asList("Hex", "Binary", "IP", "URL"), 3, "well done - its converted by ...", "incorrect - it's URL - this is done by...");
 
-        Question question9 = new Question("Which one of the following is considered as the most secure Linux operating system that also provides anonymity and the incognito option for securing the user's information?", Arrays.asList("Ubuntu", "Tails", "Fedora", "Debian"), 1, "well done - tails is correct, EXPLAIN EXPLAIN", "incorrect - answer is tails bc ...");
-
-        Question question10 = new Question("Which of the following is not a type of phishing?", Arrays.asList("vishing", "smishing", "whaling", "finning"), 3, "well done - the others are all forms of phishing that you could face", "incorrect - answer is finning. the rest are forms of phishing");
-
-        return new QuestionBank(Arrays.asList(question1, question2, question3, question4, question5));
+        return new QuestionBank(Arrays.asList(question1, question2, question3, question4, question5, question6, question7, question8));
     }
 
     @Override

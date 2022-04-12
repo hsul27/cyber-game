@@ -9,9 +9,9 @@
 
     <Button
         android:id="@+id/backToGame"
-        android:layout_width="333dp"
-        android:layout_height="145dp"
-        android:layout_marginBottom="72dp"
+        android:layout_width="340dp"
+        android:layout_height="102dp"
+        android:layout_marginBottom="60dp"
         android:text="Got it!"
         android:textColor="#fdc500"
         android:textSize="48sp"
@@ -20,21 +20,22 @@
         app:backgroundTint="#be000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/consequence"
+        app:layout_constraintVertical_bias="0.952" />
 
     <TextView
         android:id="@+id/consequence"
-        android:layout_width="788dp"
-        android:layout_height="901dp"
+        android:layout_width="792dp"
+        android:layout_height="847dp"
+        android:layout_marginTop="88dp"
         android:background="@drawable/background"
         android:text="TextView"
         android:textColor="@color/black"
         android:textSize="34sp"
         android:textStyle="bold"
         android:typeface="monospace"
-        app:layout_constraintBottom_toTopOf="@+id/backToGame"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.438" />
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

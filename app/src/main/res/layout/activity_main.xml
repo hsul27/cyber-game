@@ -29,8 +29,8 @@
 
     <EditText
         android:id="@+id/nameinput"
-        android:layout_width="501dp"
-        android:layout_height="135dp"
+        android:layout_width="505dp"
+        android:layout_height="77dp"
         android:gravity="center_horizontal"
         android:inputType="text"
         android:textSize="34sp"
@@ -77,8 +77,8 @@
 
     <TextView
         android:id="@+id/showscores"
-        android:layout_width="648dp"
-        android:layout_height="414dp"
+        android:layout_width="642dp"
+        android:layout_height="354dp"
         android:background="@drawable/background"
         android:gravity="center_horizontal"
         android:text=""

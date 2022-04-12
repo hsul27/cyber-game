@@ -10,10 +10,9 @@
 
     <TextView
         android:id="@+id/gameQuestionText"
-        android:layout_width="793dp"
-        android:layout_height="755dp"
-        android:layout_marginTop="54dp"
-        android:layout_marginBottom="8dp"
+        android:layout_width="798dp"
+        android:layout_height="613dp"
+        android:layout_marginTop="72dp"
         android:layout_weight="2"
         android:background="@drawable/background"
         android:gravity="left"
@@ -22,19 +21,16 @@
         android:textSize="34sp"
         android:textStyle="bold"
         android:typeface="monospace"
-        app:layout_constraintBottom_toTopOf="@+id/gameAnswer1btn"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintHorizontal_bias="0.519"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.157" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/gameAnswer1btn"
         android:layout_width="793dp"
         android:layout_height="75dp"
-        android:layout_marginTop="855dp"
-        android:layout_marginBottom="350dp"
+        android:layout_marginTop="40dp"
         android:layout_weight="1"
         android:background="#fdc500"
         android:text="@string/answer1"
@@ -44,16 +40,17 @@
         android:textStyle="bold"
         android:typeface="sans"
         app:backgroundTint="#be000000"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/gameQuestionText"
         tools:visibility="visible" />
 
     <Button
         android:id="@+id/gameAnswer2btn"
         android:layout_width="793dp"
         android:layout_height="75dp"
+        android:layout_marginTop="28dp"
         android:layout_weight="1"
         android:background="#FFD300"
         android:text="@string/answer2"
@@ -62,19 +59,16 @@
         android:textStyle="bold"
         android:typeface="sans"
         app:backgroundTint="#be000000"
-        app:layout_constraintBottom_toTopOf="@+id/gameAnswer3btn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/gameAnswer1btn"
-        app:layout_constraintVertical_bias="0.478" />
+        app:layout_constraintTop_toBottomOf="@+id/gameAnswer1btn" />
 
     <Button
         android:id="@+id/gameAnswer3btn"
         android:layout_width="793dp"
         android:layout_height="75dp"
-        android:layout_marginTop="1074dp"
-        android:layout_marginBottom="28dp"
+        android:layout_marginTop="24dp"
         android:layout_weight="1"
         android:background="#FFD300"
         android:text="@string/answer3"
@@ -83,19 +77,16 @@
         android:textStyle="bold"
         android:typeface="sans"
         app:backgroundTint="#BE000000"
-        app:layout_constraintBottom_toTopOf="@+id/gameAnswer4btn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/gameAnswer2btn" />
 
     <Button
         android:id="@+id/gameAnswer4btn"
         android:layout_width="793dp"
         android:layout_height="75dp"
-        android:layout_marginTop="322dp"
-        android:layout_marginBottom="28dp"
+        android:layout_marginTop="24dp"
         android:layout_weight="1"
         android:background="#FFD300"
         android:text="@string/answer4"
@@ -104,9 +95,9 @@
         android:textStyle="bold"
         android:typeface="sans"
         app:backgroundTint="#BE000000"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/gameAnswer1btn" />
+        app:layout_constraintTop_toBottomOf="@+id/gameAnswer3btn" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
