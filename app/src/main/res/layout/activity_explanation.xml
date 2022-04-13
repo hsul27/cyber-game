@@ -33,7 +33,7 @@
         android:background="@drawable/background"
         android:text="this is the explanation for the game, you are a working at ..............."
         android:textColor="#000000"
-        android:textSize="34sp"
+        android:textSize="28sp"
         android:textStyle="bold"
         android:typeface="monospace"
         app:layout_constraintBottom_toBottomOf="parent"

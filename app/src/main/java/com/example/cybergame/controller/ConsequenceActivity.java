@@ -28,9 +28,9 @@ public class ConsequenceActivity extends AppCompatActivity {
 
         mExplanation = getIntent().getStringExtra(GameActivity.EXPLANATION);
         if (mCorrectness == true) {
-            result = "your answer was correct \n" + mExplanation;
+            result = "Your answer was correct... \n\n" + mExplanation;
         } else if (mCorrectness == false) {
-            result = "your answer was wrong \n" + mExplanation;
+            result = "Your answer was wrong... \n\n" + mExplanation;
         }
 
         mConsequence = findViewById(R.id.consequence);

@@ -27,7 +27,7 @@ public class EndingActivity extends AppCompatActivity {
 
         mBackToMain = findViewById(R.id.backToMain);
         mEnding = findViewById(R.id.ending);
-        String text = "your score was " + mScore;
+        String text = "your score was " + mScore + "check out 'haveibeenpwned.com' - check if your details have been in a data breach. If they have... CHANGE THEM!!";
         mEnding.setText(text);
 
         mBackToMain.setOnClickListener(new View.OnClickListener() {
