@@ -77,6 +77,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
         mCurrentQuestion = mQuestionBank.getQuestion();
         this.displayQuestion(mCurrentQuestion);
+
     }
 
     @Override
@@ -94,11 +95,15 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         mGameButton4.setText(question.getChoiceList().get(3));
     }
 
+    public String getName() {
+        return getIntent().getStringExtra("name");
+    }
+
     private QuestionBank generateQuestions() {
         Question question1 = new Question("Your boss wants the team to understand what kind of threats you may face whilst working at MediCo." +
                 "\n\nHe asks you, what is the biggest type of cyber security vulnerability?",
                     Arrays.asList("Network vulnerabilities", "Operating System vulnerabilities", "Human vulnerabilities", "Process vulnerabilities"), 2,
-                "Well done! Although it may be difficult to hear, it turns out that we humans are the biggest vulnerability" +
+                "Well done! Although it may be difficult to hear, it turns out that we humans are the biggest vulnerability " +
                         "when it comes to cyber security!! It makes sense, as it can be quite easy to fall for phishing scams and social engineering attacks, for example." +
                         " Of course, it is humans themselves who create these scams, so they know how people work…",
                 "It's actually humans that are the biggest vulnerability, often causing more damage (including financially) than any other vulnerability type." +
@@ -106,8 +111,8 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
                         "be mitigated by more intense security measures, it's almost impossible to eliminate human error. We need to be alert!");
 
         Question question2 = new Question("You're given a tour of the manufacturing plant, but you see that an engineer has left their password written on a note," +
-                " stuck the the machine that the password is for." +
-                " Firstly, they should not have left their password so easily accessible, especially for such an important machine." +
+                " stuck the the machine that the password is for.\n\n" +
+                "Firstly, they should not have left their password so easily accessible, especially for such an important machine." +
                 "\nBut secondly, it's not a very secure password: 'popcorn55'. " +
                 "\n\nHow long would it take this password to be cracked?", Arrays.asList("42 minutes", "2 minutes", "13 hours", "3 days"), 0,
                 "Yep! According to \n'www.security.org/how-secure-is-my-password/',\nit would take just 42 minutes." +
@@ -130,19 +135,22 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
                         "Firewall - this monitors incoming and outgoing traffic on the network. It's definitely useful, but not relevant to this situation.");
 
         Question question4 = new Question("You log into your computer, and you've received the following email:\n\n" +
-                "PUT EMAIL HERE\n\n" + //need to finish
+                "FROM: medico84@protonmail.com\n\nDear "+getName()+"\n\nAs a valued employee of MediCo, we'd like to invite you to join the free rafle to win a holiday to " +
+                "Spain, courtesy of us!\nPlease follow this link to enter: http://www.5z8.info/medico_Raffle\nEnter soon! The link expires in one hour.\n\nThe MediCo team\n\n\n" +
                 "How many things can be flagged as suspicious?",
-                Arrays.asList("2", "4", "5", "7"), 2,
-                "Yep – you spotted them all! There are plenty of resources online explaining what to look out for in emails. A lot of them are often very subtle.\n" +
+                Arrays.asList("2", "3", "4", "5"), 2,
+                "Yep – you spotted them all!\n\n The shady email address of the sender and link to enter the raffle, the misspelling of the word 'raffle', and the sense of " +
+                        "urgency to enter the raffle.\n\nThere are plenty of resources online explaining what to look out for in emails. A lot of them are often very subtle.\n" +
                         "One increasingly common method is the “short and sweet”. An email may simply say “here’s what you requested” and attach a malicious file.\n" +
                         "Oftentimes, people will simply click as they assume they will have just been expecting something.",
-                "Almost...\nThe following things can be flagged as suspicious:" +
+                 "The following things can be flagged as suspicious:\n- The sender's email address does not look official. Why is '84' and protonmail used?\n" +
+                         "- The misspelling of 'raffle' as 'rafle'.\n- The link to enter the raffle also looks quite shady.\n- The sense of urgency - you must enter within an hour." +
                         "\n\nKeep a sharp eye out – there are plenty of other things to look out for when determining whether emails are legitimate or not.");
 
         Question question5 = new Question("Your CEO announced he has been receiving some very suspicious emails. " +
                 "They contain details about his personal life, such as his hobby, golfing. These emails are inviting him to a \"super exclusive golfing event\". " +
                 "Thankfully he's had some cyber security awareness training because... hang on.... is this phishing??\n\n" +
-                "What specific type of phishing is this?", Arrays.asList("Vishing", "Smishing", "Pharming", "Whaling"), 3,
+                "But what specific type of phishing is this?", Arrays.asList("Vishing", "Smishing", "Pharming", "Whaling"), 3,
                 "'Whaling' - targetting the big fish - what an appropriate name! It turns out that through some investigation, the disgruntled employee from " +
                         "earlier decided to attack the company this way instead. He had been getting unusually friendly with the CEO recently, so he was able to gather " +
                         "some details - including the fact that he loves golf.\n\n(That employee was of course, fired!)",
@@ -159,17 +167,28 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
                 "no further human action is needed - it spreads by itself.\n\nWhat type of malware is defined above?", Arrays.asList("Rootkit", "Worm", "Virus", "Spyware"), 1,
                 "The worm was thankfully stopped, but not before it messed with a couple of the pill manufacturing machines. MediCo is going to have " +
                         "to make sure these medicines don't leave the plant, otherwise it could cause a lot of damage financially, and hurt a lot of people physically. \n\n" +
-                        "WANNACRY", //EXPLAIN WANNACRY
+                        "The Wannacry incident back in 2017 is an excellent example to see the potential damage of incidents like this. A ransomware released through phishing emails, locked a huge number " +
+                        "of computers in the NHS. This cost the NHS £92 million, and affected a huge number of patients waiting for appointments, operations, etc.",
                 "The correct answer is 'worm'. They're all very similar, but worms are the malware that self-replicate.\n\n" +
                         "The worm was thankfully stopped, but not before it messed with a couple of the pill manufacturing machines. MediCo is going to have" +
-                        " to make sure these medicines don't leave the plant, otherwise it could cause a lot of damage financially, and hurt a lot of people physically.");
+                        " to make sure these medicines don't leave the plant, otherwise it could cause a lot of damage financially, and hurt a lot of people physically.\n\n" +
+                        "The Wannacry incident back in 2017 is an excellent example to see the potential damage of incidents like this. A ransomware released through phishing emails, locked a huge number " +
+                        "of computers in the NHS. This cost the NHS £92 million, and affected a huge number of patients waiting for appointments, operations, etc.");
 
-        Question question7 = new Question("The fired employee from earlier really has it out for the company!! They launched an attack, it disrupted the traffic on MediCo's network," +
-                " by overwhelming it with more Internet traffic than it can handle. The servers and devices have gone down, in both the office and manufacturing plant. MediCo are seriously " +
+        Question question7 = new Question("The fired employee from earlier really has it out for the company!!\n\nHe launched an attack, that disrupted the traffic on MediCo's network," +
+                " by overwhelming it with more Internet traffic than it can handle. The servers have gone down, in both the office and manufacturing plant. MediCo are seriously " +
                 "falling behind in their medicine production, which isn't great, especially when they're the ones supplying vaccines for the current pandemic." +
                 "\n\nWhat kind of attack is this?",
                 Arrays.asList("Zero Day", "Man in the Middle", "Cross-site scripting", "Distributed Denial of Service"), 3,
-                "He must've had plenty of resources to launch a DDOS attack!", "incorrect - remote access trojans are... "); //FINISH
+                "He must've had plenty of resources to launch a DDoS attack! These attacks are becoming increasingly common. The 'armies' of botnets used to carry out the " +
+                        "attacks are becoming more powerful and plentiful. A botnet is a network of computers infected by malware, controlled by one attacking party." +
+                        "\n\nOne of the most intense DDoS attacks ever was the Amazon Web Services attack in 2020. This was " +
+                        "surprising, as AWS is a cloud computing giant. The technique used targeted a specific type of vulnerable server, increasing the traffic sent " +
+                        "to a victim's IP address by up to 70 times. The attack lasted three days.",
+                "The attack was a Distributed Denial of Service attack - also known as DDoS attack.\n\nThese attacks are becoming increasingly common. The 'armies' of " +
+                        "botnets used to carry out the attacks are becoming more powerful and plentiful. A botnet is a network of computers infected by malware, controlled by one attacking party." +
+                        " One of the most intense DDoS attacks ever was the Amazon Web Services attack in 2020. This was surprising, as AWS is a cloud computing giant. " +
+                        "The technique used targeted a specific type of vulnerable server, increasing the traffic sent to a victim's IP address by up to 70 times. The attack lasted three days.");
 
         Question question8 = new Question("Over last couple of days, some of the machinery has been acting a little strange. A worker noticed that the pills produced " +
                 "are a little off in colour - they're purple, not pink. Clearly the machine has malfunctioned here. Is is possible that it has been infected?\n\n" +

@@ -43,7 +43,6 @@ public class MainActivity extends AppCompatActivity {
 
         mPreferences = getPreferences(MODE_PRIVATE); //not accessible outside of application
         User mUser = new User();
-       // helloUser();
 
         displayScores();
 
@@ -82,11 +81,12 @@ public class MainActivity extends AppCompatActivity {
         switch (resultCode) {
             case EXPLANATION_RETURN_CODE:
                 Intent gameActivityIntent = new Intent(MainActivity.this, GameActivity.class);
+                gameActivityIntent.putExtra("name", mNameInput.getText().toString());
                 startActivityForResult(gameActivityIntent, GAME_RETURN_CODE);
             case GAME_RETURN_CODE:
                 int score = data.getIntExtra("BUNDLE_EXTRA_SCORE", -1);
                 setScore(score);
-               // helloUser();
+                displayScores();
         }
     }
 
@@ -108,6 +108,7 @@ public class MainActivity extends AppCompatActivity {
     private void setScore(int score) {
         SharedPreferences.Editor myEdit = mPreferences.edit(); //create new edit
         String name = mNameInput.getText().toString();
+
         if(mPreferences.contains(name) && score > mPreferences.getInt(name, -1)) //if player already exists and new score is better than old
         {
             myEdit.putInt(name, score); //change the score

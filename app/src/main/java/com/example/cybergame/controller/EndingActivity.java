@@ -24,10 +24,22 @@ public class EndingActivity extends AppCompatActivity {
 
         Intent i = getIntent();
         mScore = i.getIntExtra(GameActivity.BUNDLE_EXTRA_SCORE, -1);
+        String ranking = "";
+        if (mScore >= 7) {
+            ranking = "Great! MediCo needs you on their cyber security team ASAP!";
+        } else if (mScore < 7 && mScore >= 4) {
+            ranking = "Well done! You did well. You still have some more to learn, but you've got a good idea of the basics.";
+        } else if (mScore <= 3) {
+            ranking = "Hmm. You may need some more training...";
+        }
+
 
         mBackToMain = findViewById(R.id.backToMain);
         mEnding = findViewById(R.id.ending);
-        String text = "your score was " + mScore + "check out 'haveibeenpwned.com' - check if your details have been in a data breach. If they have... CHANGE THEM!!";
+        String text = "Your score was " + mScore + "\n\n"+ranking+"\n\nIt's important that everyone has some basic cyber security awareness, especially because we live in times " +
+                "where cyberattacks are becoming and increasingly popular method in wars even!\n\nCyber attacks can vary in scale and maliciousness, but if you implement the " +
+                "right tools and know what to look out for, you better your chances of avoiding them.\n\n\n\n\n\nP.S. check out 'haveibeenpwned.com'\n\nThis site lets you check if your details" +
+                " have been in a data breach.\nIf they have... CHANGE THEM!!";
         mEnding.setText(text);
 
         mBackToMain.setOnClickListener(new View.OnClickListener() {
