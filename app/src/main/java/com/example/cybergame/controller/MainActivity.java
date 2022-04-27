@@ -94,9 +94,12 @@ public class MainActivity extends AppCompatActivity {
         String name = mNameInput.getText().toString();
 
         //if player already exists and new score is better than old score
-        if(mPreferences.contains(name) && score > mPreferences.getInt(name, 0))
+        if(mPreferences.contains(name))
         {
-            myEdit.putInt(name, score); //change the score
+            if (score > mPreferences.getInt(name, 0))
+            {
+                myEdit.putInt(name, score); //change the score
+            }
         }
         else { //add new user
             myEdit.putString(name, name);
