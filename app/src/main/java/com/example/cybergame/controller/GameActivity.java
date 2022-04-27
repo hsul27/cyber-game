@@ -130,8 +130,8 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
                         "Firewall - this monitors incoming and outgoing traffic on the network. It's definitely useful, but not relevant to this situation.");
 
         Question question4 = new Question("You log into your computer, and you've received the following email:\n\n" +
-                "FROM: medico84@protonmail.com\n\nDear "+getName()+"\n\nAs a valued employee of MediCo, we'd like to invite you to join the free rafle to win a holiday to " +
-                "Spain, courtesy of us!\nPlease follow this link to enter: http://www.5z8.info/medico_Raffle\nEnter soon! The link expires in one hour.\n\nThe MediCo team\n\n\n" +
+                "FROM: medico84@protonmail.com\n\nDear "+getName()+"\n\nAs a valued employee of MediCo, we'd like to invite you to join the free rafle to win £200" +
+                ", courtesy of us!\nPlease follow this link to enter: http://www.5z8.info/medico_Raffle\nEnter soon! The link expires in one hour.\n\nThe MediCo team\n\n\n" +
                 "How many things can be flagged as suspicious?",
                 Arrays.asList("2", "3", "4", "5"), 2,
                 "Yep – you spotted them all!\n\n The shady email address of the sender and link to enter the raffle, the misspelling of the word 'raffle', and the sense of " +

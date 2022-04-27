@@ -102,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
             myEdit.putString(name, name);
             myEdit.putInt(name, score);
         }
-        myEdit.commit(); //commit changes
+        myEdit.apply(); //apply changes
     }
 
     private void displayScores() {
