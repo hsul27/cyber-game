@@ -24,9 +24,9 @@ public class ConsequenceActivity extends AppCompatActivity {
 
         mBackToGame = findViewById(R.id.backToGame);
 
-        mCorrectness = getIntent().getBooleanExtra(GameActivity.CORRECTNESS, true);
+        mCorrectness = getIntent().getBooleanExtra(GameActivity.CORRECTNESS, true); //check if question was correct
 
-        mExplanation = getIntent().getStringExtra(GameActivity.EXPLANATION);
+        mExplanation = getIntent().getStringExtra(GameActivity.EXPLANATION); //get the explanation for question
         if (mCorrectness == true) {
             result = "Your answer was correct... \n\n" + mExplanation;
         } else if (mCorrectness == false) {
@@ -34,14 +34,14 @@ public class ConsequenceActivity extends AppCompatActivity {
         }
 
         mConsequence = findViewById(R.id.consequence);
-        mConsequence.setText(result);
+        mConsequence.setText(result); //display correct/incorrect and explanation
 
 
         mBackToGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
-            }
+            } //end consequence activity when button pressed
         });
     }
 

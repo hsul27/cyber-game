@@ -30,12 +30,13 @@ public class ExplanationActivity extends AppCompatActivity {
                 "unsure about what exactly to look out for, and how to take action.\n\nYou’ll probably face a few tricky situations, as well as " +
                 "some quickfire questions, so do your best and don’t panic. You’ll be a cyber expert in no time!\n\nLet’s see how you fare...\n\n" +
                 "Good luck!");
+
         mLetsPlayButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent r = new Intent();
-                setResult(EXPLANATION_RETURN_CODE, r);
-                finish();
+                setResult(EXPLANATION_RETURN_CODE, r); //pass back return code so MainActivity can see that explanation has been shown
+                finish(); //end explanation activity
             }
         });
     }

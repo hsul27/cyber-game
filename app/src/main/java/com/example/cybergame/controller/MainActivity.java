@@ -18,6 +18,7 @@ import com.example.cybergame.model.User;
 
 public class MainActivity extends AppCompatActivity {
 
+    //return codes used to check which intent have come back from
     public static final int GAME_RETURN_CODE = 3;
     public static final int EXPLANATION_RETURN_CODE = 2;
     private TextView mWelcomeTextView;
@@ -26,14 +27,13 @@ public class MainActivity extends AppCompatActivity {
     private TextView mCurrentScores;
     private TextView mShowScores;
     private SharedPreferences mPreferences;
- //   public static final String PREF_KEY_SCORE = "PREF_KEY_SCORE";
-  //  public static final String PREF_KEY_FIRSTNAME = "PREF_KEY_FIRSTNAME";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //widget data set
         mWelcomeTextView = findViewById(R.id.welcometext);
         mNameInput = findViewById(R.id.nameinput);
         mPlayButton = findViewById(R.id.playbutton);
@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         mCurrentScores = findViewById(R.id.currentscores);
         mShowScores = findViewById(R.id.showscores);
 
-        mPreferences = getPreferences(MODE_PRIVATE); //not accessible outside of application
+        mPreferences = getPreferences(MODE_PRIVATE); //not accessible outside of application, data kept private
         User mUser = new User();
 
         displayScores();
@@ -49,17 +49,16 @@ public class MainActivity extends AppCompatActivity {
         mNameInput.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
             }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
+                //if user has entered data in name field, they can then press button
                 mPlayButton.setEnabled(s.toString().length() != 0);
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-
             }
         });
 
@@ -67,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String firstname = mNameInput.getText().toString();
-                mUser.setFirstName(firstname);
+                mUser.setFirstName(firstname); //sets current user's name to the name entered
 
                 Intent explanationActivityIntent = new Intent(MainActivity.this, ExplanationActivity.class);
                 startActivityForResult(explanationActivityIntent, EXPLANATION_RETURN_CODE);
@@ -79,48 +78,35 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         switch (resultCode) {
-            case EXPLANATION_RETURN_CODE:
+            case EXPLANATION_RETURN_CODE: //if the explanation screen has just been shown
                 Intent gameActivityIntent = new Intent(MainActivity.this, GameActivity.class);
-                gameActivityIntent.putExtra("name", mNameInput.getText().toString());
-                startActivityForResult(gameActivityIntent, GAME_RETURN_CODE);
-            case GAME_RETURN_CODE:
-                int score = data.getIntExtra("BUNDLE_EXTRA_SCORE", -1);
+                gameActivityIntent.putExtra("name", mNameInput.getText().toString()); //pass user's name to GameActivity
+                startActivityForResult(gameActivityIntent, GAME_RETURN_CODE); //start the game
+            case GAME_RETURN_CODE: //if the game has ended
+                int score = data.getIntExtra("BUNDLE_EXTRA_SCORE", 0); //retrieve user's score
                 setScore(score);
                 displayScores();
         }
     }
 
-//    private void helloUser() {
-//        String firstName = mPreferences.getString(PREF_KEY_FIRSTNAME, null);
-//        if(firstName != null) {
-//            int score = mPreferences.getInt(PREF_KEY_SCORE, 0);
-//
-//            String text = "welcome back " + firstName
-//                    + "\nyour highest score is " + score
-//                    + ", try improve!!";
-//            mWelcomeTextView.setText(text);
-//            mNameInput.setText(firstName);
-//            mNameInput.setSelection(firstName.length());
-//            mPlayButton.setEnabled(true);
-//        }
-//    }
-
     private void setScore(int score) {
-        SharedPreferences.Editor myEdit = mPreferences.edit(); //create new edit
+        SharedPreferences.Editor myEdit = mPreferences.edit(); //create new shared preferences editor
         String name = mNameInput.getText().toString();
 
-        if(mPreferences.contains(name) && score > mPreferences.getInt(name, -1)) //if player already exists and new score is better than old
+        //if player already exists and new score is better than old score
+        if(mPreferences.contains(name) && score > mPreferences.getInt(name, 0))
         {
             myEdit.putInt(name, score); //change the score
         }
-        else {
+        else { //add new user
             myEdit.putString(name, name);
             myEdit.putInt(name, score);
         }
-        myEdit.commit();
+        myEdit.commit(); //commit changes
     }
 
     private void displayScores() {
+        //formatting data from shared preferences format
         String allDetails = mPreferences.getAll().toString();
         String withoutb = allDetails.replaceAll("[{}]", "");
         String withoutc = withoutb.replace(',','\n');

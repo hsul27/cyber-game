@@ -14,7 +14,7 @@ public class EndingActivity extends AppCompatActivity {
 
     private TextView mEnding;
     private Button mBackToMain;
-    public static final int REQUEST_CODE = 42;
+    public static final int REQUEST_CODE = 42; //identify which intent came back from
     int mScore;
 
     @Override
@@ -23,8 +23,8 @@ public class EndingActivity extends AppCompatActivity {
         setContentView(R.layout.activity_ending);
 
         Intent i = getIntent();
-        mScore = i.getIntExtra(GameActivity.BUNDLE_EXTRA_SCORE, -1);
-        String ranking = "";
+        mScore = i.getIntExtra(GameActivity.BUNDLE_EXTRA_SCORE, 0); //retrieve score passed from intent
+        String ranking = ""; //rank user based on score
         if (mScore >= 7) {
             ranking = "Great! MediCo needs you on their cyber security team ASAP!";
         } else if (mScore < 7 && mScore >= 4) {
@@ -36,7 +36,7 @@ public class EndingActivity extends AppCompatActivity {
 
         mBackToMain = findViewById(R.id.backToMain);
         mEnding = findViewById(R.id.ending);
-        String text = "Your score was " + mScore + "\n\n"+ranking+"\n\nIt's important that everyone has some basic cyber security awareness, especially because we live in times " +
+        String text = "Your score was " + mScore + "/8\n\n"+ranking+"\n\nIt's important that everyone has some basic cyber security awareness, especially because we live in times " +
                 "where cyberattacks are becoming and increasingly popular method in wars even!\n\nCyber attacks can vary in scale and maliciousness, but if you implement the " +
                 "right tools and know what to look out for, you better your chances of avoiding them.\n\n\n\n\n\nP.S. check out 'haveibeenpwned.com'\n\nThis site lets you check if your details" +
                 " have been in a data breach.\nIf they have... CHANGE THEM!!";
@@ -45,7 +45,6 @@ public class EndingActivity extends AppCompatActivity {
         mBackToMain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //set result??
                 finish();
             }
         });

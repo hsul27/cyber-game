@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">CyberGame</string>
     <string name="welcome">Welcome to MediCo, what\'s your name?</string>
-    <string name="buttonPlay">Let\'s play</string>
+    <string name="buttonPlay">How do I play?</string>
     <string name="question">question?</string>
     <string name="answer1">answer1</string>
     <string name="answer2">answer2</string>

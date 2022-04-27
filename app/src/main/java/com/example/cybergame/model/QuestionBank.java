@@ -10,7 +10,6 @@ public class QuestionBank {
     public QuestionBank(List<Question> questionList) {
 
         mQuestionList = questionList;
-       // Collections.shuffle(mQuestionList);
         mNextQuestionIndex = 0;
     }
 

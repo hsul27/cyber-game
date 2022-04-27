@@ -19,6 +19,7 @@ import java.util.Arrays;
 
 public class GameActivity extends AppCompatActivity implements View.OnClickListener {
 
+    //create all widgets
     private TextView mGameQuestionTextView;
     private Button mGameButton1;
     private Button mGameButton2;
@@ -45,20 +46,14 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
-        System.out.println("GameActivity::onCreate()");
-
         mQuestionBank = this.generateQuestions();
 
-        if(savedInstanceState != null) {
-            mScore = savedInstanceState.getInt(BUNDLE_STATE_SCORE);
-            mNumberOfQuestions = savedInstanceState.getInt(BUNDLE_STATE_QUESTION);
-        } else {
-            mScore = 0;
-            mNumberOfQuestions = 8;
-        }
+        mScore = 0;
+        mNumberOfQuestions = 8;
 
         mEnableTouchEvents = true;
 
+        //set data for all widgets
         mGameQuestionTextView = findViewById(R.id.gameQuestionText);
         mGameButton1 = findViewById(R.id.gameAnswer1btn);
         mGameButton2 = findViewById(R.id.gameAnswer2btn);
@@ -75,9 +70,8 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         mGameButton3.setOnClickListener(GameActivity.this);
         mGameButton4.setOnClickListener(GameActivity.this);
 
-        mCurrentQuestion = mQuestionBank.getQuestion();
+        mCurrentQuestion = mQuestionBank.getQuestion(); //retrieve question from question bank
         this.displayQuestion(mCurrentQuestion);
-
     }
 
     @Override
@@ -88,6 +82,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void displayQuestion(final Question question) {
+        //for current question, set widgets to show matching text
         mGameQuestionTextView.setText(question.getQuestion());
         mGameButton1.setText(question.getChoiceList().get(0));
         mGameButton2.setText(question.getChoiceList().get(1));
@@ -97,7 +92,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
     public String getName() {
         return getIntent().getStringExtra("name");
-    }
+    } //retrieve user's name to use in a question
 
     private QuestionBank generateQuestions() {
         Question question1 = new Question("Your boss wants the team to understand what kind of threats you may face whilst working at MediCo." +
@@ -185,7 +180,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
                         "\n\nOne of the most intense DDoS attacks ever was the Amazon Web Services attack in 2020. This was " +
                         "surprising, as AWS is a cloud computing giant. The technique used targeted a specific type of vulnerable server, increasing the traffic sent " +
                         "to a victim's IP address by up to 70 times. The attack lasted three days.",
-                "The attack was a Distributed Denial of Service attack - also known as DDoS attack.\n\nThese attacks are becoming increasingly common. The 'armies' of " +
+                "The attack was a Distributed Denial of Service attack - also known as DDoS attack. This is when an attacker overwhelms the targeted server or network with a flood of Internet traffic.\n\nThese attacks are becoming increasingly common. The 'armies' of " +
                         "botnets used to carry out the attacks are becoming more powerful and plentiful. A botnet is a network of computers infected by malware, controlled by one attacking party." +
                         " One of the most intense DDoS attacks ever was the Amazon Web Services attack in 2020. This was surprising, as AWS is a cloud computing giant. " +
                         "The technique used targeted a specific type of vulnerable server, increasing the traffic sent to a victim's IP address by up to 70 times. The attack lasted three days.");
@@ -217,38 +212,37 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-
-
+        boolean mustEnd = false;
         mEnableTouchEvents = false;
 
-        if (--mNumberOfQuestions == 0) {
-            endGame();
+        if (--mNumberOfQuestions == 0) { //if one question left to ask, set mustEnd to true - endGame() called at end of function
+            mustEnd = true;
         }
         else {
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     mEnableTouchEvents = true;
-
-                    mCurrentQuestion = mQuestionBank.getQuestion();
+                    mCurrentQuestion = mQuestionBank.getQuestion(); //display next question
                     displayQuestion(mCurrentQuestion);
                 }
-            }, 200); // LENGTH_SHORT is usually 2 second long
+            }, 200);
         }
 
-        int responseIndex = (int) v.getTag();
+        int responseIndex = (int) v.getTag(); //get correct answer
         if (responseIndex == mCurrentQuestion.getAnswerIndex()) {
-            // Good answer
-            displayConsequence(true, mCurrentQuestion.getCorrectConsequence());
+            displayConsequence(true, mCurrentQuestion.getCorrectConsequence()); //answer correct, increase score
             mScore++;
         } else {
-            // Wrong answer
-            displayConsequence(false, mCurrentQuestion.getIncorrectConsequence());
+            displayConsequence(false, mCurrentQuestion.getIncorrectConsequence()); //answer incorrect
+        }
+        if (mustEnd == true) {
+            endGame();
         }
     }
 
     public void displayConsequence(boolean correct, String explain) {
-        //open consequence activity, read consequence, then return to activity
+        //open consequence activity, pass true or false, and explanation
         Intent consequence = new Intent(GameActivity.this, ConsequenceActivity.class);
         consequence.putExtra(CORRECTNESS, Boolean.valueOf(correct));
         consequence.putExtra(EXPLANATION, explain);
@@ -259,33 +253,13 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     public void endGame() {
 
         Intent r = new Intent();
-        r.putExtra(BUNDLE_EXTRA_SCORE, mScore);
-
-        Intent endingActivityIntent = new Intent(GameActivity.this, EndingActivity.class);
-        endingActivityIntent.putExtra(BUNDLE_EXTRA_SCORE, mScore);
+        r.putExtra(BUNDLE_EXTRA_SCORE, mScore); //send score back to MainActivity
+        Intent endingActivityIntent = new Intent(GameActivity.this, EndingActivity.class); //start intent for Ending screen
+        endingActivityIntent.putExtra(BUNDLE_EXTRA_SCORE, mScore); //pass score so Ending screen can display
         startActivity(endingActivityIntent);
 
-        setResult(GAME_RETURN_CODE, r);
+        setResult(GAME_RETURN_CODE, r); //send return code back to MainActivity, so MainActivity knows the GameActivity has ended
         finish();
-    //finish
-
-//        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-//
-//        builder.setTitle("Well done!")
-//                .setMessage("Your score is " + mScore)
-//                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-//                    @Override
-//                    public void onClick(DialogInterface dialog, int which) {
-//                        // End the activity
-//                        Intent resultIntent = new Intent();
-//                        resultIntent.putExtra(BUNDLE_EXTRA_SCORE, mScore);
-//                        setResult(RESULT_OK, resultIntent);
-//                        finish();
-//                    }
-//                })
-//                .setCancelable(false)
-//                .create()
-//                .show();
     }
 
     @Override
